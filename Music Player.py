@@ -42,6 +42,10 @@ soup_two = soup.find(attrs={'class': 'item-section'})  #item-section is the part
 
 
 #print(soup_two)  ----> Test
+
+
+# initialize an empty list for now which will 
+# be filled later on the loop below
 songs_list = []
 
 # loop through the data inside soup_two
@@ -49,12 +53,24 @@ songs_list = []
 for url in soup_two.find_all('a'):
     # find all the hrefs from the links found in soup_two
     songs = url.get('href')
+
+    # in each of the above loop go to the empty list 
+    # that we initialized before and add the items into it
+    # We'll later on get the first item from the list to display 
     songs_list.append(songs)
 
 
-# the main url of the video we want
+# the main url of the video we want 
+# Youtube Main Page
 prefix = 'https://www.youtube.com'
 
 
+# loadingg
+print('''Loading the Song.........
+         Fasten your Seat belt...''')
+
 # intent to open the link of the video in the client's web browser
 webbrowser.open(prefix + songs_list[0])
+
+
+### THE END ###
