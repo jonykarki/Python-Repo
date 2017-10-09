@@ -17,6 +17,10 @@ headers={'User-Agent':user_agent,}
 # query the user for the song they want to play
 song_name = input("Enter the name of the song to play:  ")
 
+# loadingg
+print('''Loading the Song.........
+         Fasten your Seat belt...''')
+
 # youtube query
 # replace all the spaces with plus(+) sign
 youtube_query = song_name.replace(' ', '+')
@@ -64,10 +68,6 @@ for url in soup_two.find_all('a'):
 # Youtube Main Page
 prefix = 'https://www.youtube.com'
 
-
-# loadingg
-print('''Loading the Song.........
-         Fasten your Seat belt...''')
 
 # intent to open the link of the video in the client's web browser
 webbrowser.open(prefix + songs_list[0])
