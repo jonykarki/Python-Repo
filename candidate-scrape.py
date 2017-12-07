@@ -1,5 +1,12 @@
 import json
 import urllib.request
+import MySQLdb
+db = MySQLdb.connect(host="localhost",    # your host, usually localhost
+                     user="root",         # your username
+                     passwd="",  # your password
+                     db="election") 
+
+cur = db.cursor()
 
 # user_agent for sending headers with the request
 user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
@@ -52,9 +59,15 @@ for key, value in election_area.items():
 
     except:
         for item in data["candidates"]['2'][area_key]:
-            print(item['aName'])
+            constituencyname  = item['aName'].encode('utf-8')
+            candidatename = item["cName"].encode('utf-8')
 
-            print(item["cName"])
+            sql = "INSERT INTO `test` (`id`, `candidatename`, `constituencyname`) VALUES (NULL, %s, %s)"
+            cur.execute(sql, (candidatename, constituencyname))
+
+            db.commit()
+
+            print('INSERTED ' + item["cName"] + " into the database")
             
             j = j + 1
 
