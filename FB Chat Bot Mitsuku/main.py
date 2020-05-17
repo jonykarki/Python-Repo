@@ -67,7 +67,7 @@ class EchoBot(Client):
             pass
 
         # don't reply on our own messages
-        if author_id == 100002928098103:
+        if author_id == ***************:
             msg = get_reply(message_object.text)
             self.reactToMessage(mid, MessageReaction.ANGRY)
             self.send(Message(text=msg), thread_id=thread_id,
